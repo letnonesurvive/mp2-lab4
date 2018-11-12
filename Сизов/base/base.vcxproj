@@ -83,6 +83,9 @@
   <ItemGroup>
     <ClInclude Include="stack.h" />
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ex.cpp" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
