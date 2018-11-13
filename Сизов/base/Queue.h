@@ -1,4 +1,4 @@
-#include "stack.h"
+п»ї#include "stack.h"
 
 const int MAXSIZE = 100;
 
@@ -68,7 +68,7 @@ public:
 	{
 		delete[] pMem;
 	}
-	friend ostream& operator <<(ostream &os, TQueue &a)//выводит очередь в правильно порядке
+	friend ostream& operator <<(ostream &os, TQueue &a)//РІС‹РІРѕРґРёС‚ РѕС‡РµСЂРµРґСЊ РІ РїСЂР°РІРёР»СЊРЅРѕ РїРѕСЂСЏРґРєРµ
 	{
 		for (int i = 0; i <a.datacount; i++)
 		{
