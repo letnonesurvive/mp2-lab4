@@ -1,6 +1,6 @@
 #include "Queue.h"
 
-void main()
+void main() //q1 -интенсивность задач q2- производительность процессора 
 {
 	TQueue<int> a(5);
 	for (int i = 0; i < 5; i++)
@@ -9,7 +9,9 @@ void main()
 	}
 	a.Get();
 	a.Put(5);
-	cout << a.GetFirst();
+	cout << a.GetFirst()<<endl;
+	cout << a << endl;
+	cout << a.GetLast();
 	/*cout << a<<endl;
 	cout << a;*/
 }

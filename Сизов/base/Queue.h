@@ -1,9 +1,9 @@
-﻿#include "stack.h"
-
+﻿#include <iostream>
+using namespace std;
 const int MAXSIZE = 100;
 
 template <class type>
-class TQueue:public TStack<type>
+class TQueue
 {
 private:
 	int size;
