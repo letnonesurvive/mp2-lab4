@@ -1,5 +1,5 @@
-#include "stack.h"
 #include "Queue.h"
+
 void main()
 {
 	TQueue<int> a(5);
@@ -9,5 +9,7 @@ void main()
 	}
 	a.Get();
 	a.Put(5);
-	cout << a;
+	cout << a.GetFirst();
+	/*cout << a<<endl;
+	cout << a;*/
 }
