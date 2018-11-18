@@ -82,10 +82,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Queue.h" />
-    <ClInclude Include="Task.h" />
+    <ClInclude Include="Result.h" />
+    <ClInclude Include="TaskFlow.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="result.cpp" />
     <ClCompile Include="sample.cpp" />
+    <ClCompile Include="taskflow.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

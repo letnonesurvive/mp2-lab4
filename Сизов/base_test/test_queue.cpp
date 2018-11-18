@@ -1,105 +1,122 @@
-#include "stack.h"
+#include "Queue.h"
 #include <gtest.h>
 
-TEST(TStack, can_create_stack_with_positive_length)
+TEST(TQueue, can_create_queue_with_positive_length)
 {
-  ASSERT_NO_THROW(TStack<int> st(5));
+  ASSERT_NO_THROW(TQueue<int> q(5));
 }
-TEST(TStack, can_not_create_stack_with_negative_length)
+TEST(TQueue, can_not_create_queue_with_negative_length)
 {
-	ASSERT_ANY_THROW(TStack<int> st(-5));
+	ASSERT_ANY_THROW(TQueue<int> q(-5));
 }
-TEST(TStack, can_not_create_stack_with_too_large_length)
+TEST(TQueue, can_not_create_queue_with_too_large_length)
 {
-	ASSERT_ANY_THROW(TStack<int> st(MaxStackSize+1));
+	ASSERT_ANY_THROW(TQueue<int> q(MAXQUEUE+1));
 }
-TEST(TStack, can_return_last_elem_of_stack)
+TEST(TQueue, can_return_first_elem_of_queue)
 {
-	TStack<int> st(5);
+	TQueue<int> q(5);
+	for (int i = 0; i < 5; i++)
+		q.Put(i);
+	EXPECT_EQ(0, q.GetFirst());
+}
+TEST(TQueue, can_return_last_elem_of_queue)
+{
+	TQueue<int> q(5);
+	for (int i = 0; i < 5; i++)
+		q.Put(i);
+	EXPECT_EQ(4, q.GetLast());
+}
+TEST(TQueue, can_put_and_get_elem_in_queue)
+{
+	TQueue<int> q(1);
+	ASSERT_NO_THROW(q.Put(10));
+	ASSERT_NO_THROW(q.Get());
+}
+TEST(TQueue, method_get_delete_elem_of_queue)
+{
+	TQueue<int> q(1);
+	q.Put(5);
+	q.Get();
+	EXPECT_NE(5, q.GetFirst());
+	//EXPECT_TRUE(q.IsEmpty());
+}
+TEST(TQueue, can_check_queue_for_empty)
+{
+	TQueue<int> q(1);
+	EXPECT_TRUE(q.IsEmpty());
+}
+TEST(TQueue, can_check_queue_for_full)
+{
+	TQueue<int> q(5);
 	for (int i = 0; i < 5; i++)
 	{
-		st.Put(i);
+		q.Put(i);
 	}
-	EXPECT_EQ(4, st.Back());
+	EXPECT_TRUE(q.IsFull());
 }
-TEST(TStack, can_put_elem_in_stack)
+TEST(TQueue, can_create_copied_queue)
 {
-	TStack<int> st(1);
-	ASSERT_NO_THROW(st.Put(10));
-}
-TEST(TStack, can_get_elem_of_stack)
-{
-	TStack<int> st(1);
-	st.Put(10);
-	EXPECT_EQ(10, st.Get());
-}
-TEST(TStack, method_get_delete_elem_of_stack)
-{
-	TStack<int> st(5);
-	st.Put(5);
-	st.Get();
-	EXPECT_NE(5, st.Back());
-}
-TEST(TStack, can_check_stack_for_empty)
-{
-	TStack<int> st(1);
-	EXPECT_TRUE(st.IsEmpty());
-}
-TEST(TStack, can_check_stack_for_full)
-{
-	TStack<int> st(5);
-	while (!st.IsFull())
-		st.Put(5);
-	EXPECT_TRUE(st.IsFull());
-}
-TEST(TStack, can_create_copied_stack)
-{
-	TStack<int> st1(5);
-	st1.Put(5);
-	TStack<int> st2(st1);
-	EXPECT_EQ(st1,st2);//ASSERT_NO_THROW(TStack<int>st1(st));
-}
-TEST(TStack, can_compare_two_stacks)
-{
-	TStack<int> st1(5);
-	st1.Put(5);
-	TStack<int> st2(st1);
-	EXPECT_TRUE(st1==st2);
-}
-TEST(TStack, two_stacks_are_not_equal)
-{
-	TStack<int> st1(5),st2(5);
-	st1.Put(5);
-	EXPECT_NE(st1, st2);
-}
-TEST(TStack, can_assign_stack)
-{
-	TStack<int> st1(1),st2(1);
-	st1.Put(5);
-	ASSERT_NO_THROW(st2 = st1);//st2 = st1;
-}
-TEST(TStack, assign_operator_change_stack_size)
-{
-	TStack<int> st1(5), st2(10);
-	st1 = st2;
-	EXPECT_NE(5, st1.Size());
-}
-TEST(TStack, assign_operator_change_stack_top)//sorry for my english 
-{
-	TStack<int> st1(5), st2(10);
-	while (!st1.IsFull())
+	TQueue<int> q1(5);
+	for (int i = 0; i < 5; i++)
 	{
-		st1.Put(5);
+		q1.Put(i);
 	}
-	st2 = st1;
-	EXPECT_NE(-1, st2.Top());
+	TQueue<int> q2(q1);
+	EXPECT_EQ(q1, q2);
 }
-TEST(TStack, two_different_stacks_have_different_memories)
+TEST(TQueue, can_compare_two_queue)
 {
-	TStack<int> st1(2), st2(3);
-	EXPECT_NE(&st1, &st2);
+	TQueue<int>q1(5),q2(5);
+	q1.Put(5);
+	q2.Put(5);
+	EXPECT_TRUE(q1==q2);
 }
-
-
-
+TEST(TQueue, two_queue_are_not_equal)
+{
+	TQueue<int>q1(5), q2(5);
+	q1.Put(3);
+	EXPECT_FALSE(q1 == q2);
+}
+TEST(TQueue, can_assign_queue)
+{
+	TQueue<int>q1(5), q2(5);
+	q1.Put(5);
+	q2 = q1;
+	EXPECT_EQ(q1, q2);
+}
+TEST(TQueue, assign_operator_change_queue_size)
+{
+	TQueue<int>q1(10), q2(5);
+	q2 = q1;
+	EXPECT_NE(q2.Size(), 5);
+}
+TEST(TQueue, assign_operator_change_queue_first)
+{
+	TQueue<int>q1(5), q2(5);
+	for (int i = 0; i < 5; i++)
+	{
+		q1.Put(i+1);
+		q2.Put(5);
+	}
+	q2 = q1;
+	EXPECT_NE(5, q2.GetFirst());
+	//EXPECT_EQ(q2.GetFirst(), 1);
+}
+TEST(TQueue, assign_operator_change_queue_last)
+{
+	TQueue<int>q1(5), q2(5);
+	for (int i = 0; i < 5; i++)
+	{
+		q1.Put(i + 1);
+		q2.Put(1);
+	}
+	q2 = q1;
+	EXPECT_NE(1, q2.GetLast());
+}
+TEST(TQueue, two_different_queues_have_different_memories)
+{
+	TQueue<int> q1(5), q2(5);
+	EXPECT_NE(&q1, &q2);
+}
 
