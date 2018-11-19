@@ -94,7 +94,7 @@ public:
 		datacount--;
 		return re;
 	}
-	void Put(int elem)
+	void Put(type elem)
 	{
 		if (IsFull())
 			throw"Queue is full";

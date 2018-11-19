@@ -22,7 +22,7 @@ void main() //q1 -интенсивность задач q2- производительность процессора
 	//cout << "¬ведите интенсивоность потока задач" << endl;
 	//cin >> intens;
 	//CPU cpu(tacts,sq,intens,rate);
-	TProc cpu(10, 3, 0.5, 0.2);
+	TProc cpu(10, 3, 0.5, 0.2,8);
 	cpu.RunJob();
 	Result r1(cpu);
 	r1.AllStatus();
