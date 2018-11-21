@@ -1,17 +1,17 @@
-#include "Result.h"
+п»ї#include "Result.h"
 unsigned int Result :: GetAllTacts()
 {
 	return proc.all_tacts;
 }
 int Result::GetPrograms()
 {
-	if (proc.c_progs == 0)//чтобы не было деления на ноль
+	if (proc.c_progs == 0)//С‡С‚РѕР±С‹ РЅРµ Р±С‹Р»Рѕ РґРµР»РµРЅРёСЏ РЅР° РЅРѕР»СЊ
 		return 1;
 	return proc.c_progs;
 }
 int Result::GetComplited()
 {
-	if (proc.c_complete == 0)//аналогично
+	if (proc.c_complete == 0)//Р°РЅР°Р»РѕРіРёС‡РЅРѕ
 		return 1;
 	return proc.c_complete;
 }
@@ -38,12 +38,12 @@ int Result::GetCoreLoad()
 void Result::AllStatus()
 {
 	cout.precision(2);
-		cout << "Всего было поданых задач " << GetPrograms() << endl;
-		cout << "Колличество завершенных задач " << GetComplited() << endl;
-		cout << "Незавершенных задач " << GetUnfinish()<< endl;
-		cout << "Среднее время выполнения программы " << double(GetTimeExecution()) / GetComplited()<< endl;
-		cout << "Средняя загруженность ядер " << double(GetCoreLoad())*100/ (GetAllTacts()*proc.all_cores)<< "%" << endl;
-		cout << "Откланенных задач " << (double(GetIgnored()) / GetPrograms())*100<< "%" <<  endl;
-		cout << "Бездействие процессора " << (double(GetDowntime())/GetAllTacts())*100<< "%" << endl;
+		cout << "Р’СЃРµРіРѕ Р±С‹Р»Рѕ РїРѕРґР°РЅС‹С… Р·Р°РґР°С‡ " << GetPrograms() << endl;
+		cout << "РљРѕР»Р»РёС‡РµСЃС‚РІРѕ Р·Р°РІРµСЂС€РµРЅРЅС‹С… Р·Р°РґР°С‡ " << GetComplited() << endl;
+		cout << "РќРµР·Р°РІРµСЂС€РµРЅРЅС‹С… Р·Р°РґР°С‡ " << GetUnfinish()<< endl;
+		cout << "РЎСЂРµРґРЅРµРµ РІСЂРµРјСЏ РІС‹РїРѕР»РЅРµРЅРёСЏ РїСЂРѕРіСЂР°РјРјС‹ " << double(GetTimeExecution()) / GetComplited()<< endl;
+		cout << "РЎСЂРµРґРЅСЏСЏ Р·Р°РіСЂСѓР¶РµРЅРЅРѕСЃС‚СЊ СЏРґРµСЂ " << double(GetCoreLoad())*100/ (GetAllTacts()*proc.all_cores)<< "%" << endl;
+		cout << "РћС‚РєР»Р°РЅРµРЅРЅС‹С… Р·Р°РґР°С‡ " << (double(GetIgnored()) / GetPrograms())*100<< "%" <<  endl;
+		cout << "Р‘РµР·РґРµР№СЃС‚РІРёРµ РїСЂРѕС†РµСЃСЃРѕСЂР° " << (double(GetDowntime())/GetAllTacts())*100<< "%" << endl;
 		cout << endl;
 }

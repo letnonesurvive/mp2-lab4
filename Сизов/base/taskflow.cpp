@@ -1,4 +1,4 @@
-#include "TaskFlow.h"
+п»ї#include "TaskFlow.h"
 #include <iostream>
 double TProc::Random(int min, int max)
 {
@@ -40,16 +40,16 @@ Task TProc::GetNewTask()
 }
 bool TProc::IsTask()
 {
-	double q1 = Random(0, 1);//q1 в методичке
-	if (q1 <= intens) //если меньше значит генерируем новое задание
+	double q1 = Random(0, 1);//q1 РІ РјРµС‚РѕРґРёС‡РєРµ
+	if (q1 <= intens) //РµСЃР»Рё РјРµРЅСЊС€Рµ Р·РЅР°С‡РёС‚ РіРµРЅРµСЂРёСЂСѓРµРј РЅРѕРІРѕРµ Р·Р°РґР°РЅРёРµ
 		return true;
 	else
 		return false;
 }
 bool TProc::IsComplete()
 {
-	double q2 = Random(0, 1);//q2 в методичке 
-	if (q2 <= rate) //значит завершено задание
+	double q2 = Random(0, 1);//q2 РІ РјРµС‚РѕРґРёС‡РєРµ 
+	if (q2 <= rate) //Р·РЅР°С‡РёС‚ Р·Р°РІРµСЂС€РµРЅРѕ Р·Р°РґР°РЅРёРµ
 		return true;
 	else
 		return false;
@@ -63,12 +63,12 @@ void TProc::RunJob()
 		{
 			c_progs++;
 			Task tmp = GetNewTask();
-			if (tmp.cores > all_cores || queueTasks.IsFull())//программа запросила больше ядер чем вообще существует у процессора
+			if (tmp.cores > all_cores || queueTasks.IsFull())//РїСЂРѕРіСЂР°РјРјР° Р·Р°РїСЂРѕСЃРёР»Р° Р±РѕР»СЊС€Рµ СЏРґРµСЂ С‡РµРј РІРѕРѕР±С‰Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚ Сѓ РїСЂРѕС†РµСЃСЃРѕСЂР°
 				c_ignore++;
 			else if (!queueTasks.IsFull())
 				queueTasks.Put(tmp);
 		}
-		for (int j = 0; j < jobs.size(); j++)//смотрим какие программы завершились в процессоре
+		for (int j = 0; j < jobs.size(); j++)//СЃРјРѕС‚СЂРёРј РєР°РєРёРµ РїСЂРѕРіСЂР°РјРјС‹ Р·Р°РІРµСЂС€РёР»РёСЃСЊ РІ РїСЂРѕС†РµСЃСЃРѕСЂРµ
 		{
 			if (IsComplete())
 			{
@@ -81,7 +81,7 @@ void TProc::RunJob()
 			else
 				jobs[j].ticks++;
 		}
-		while (queueTasks.First().cores <= free_cores && !queueTasks.IsEmpty())//если возможно то записываем новую программу на этом такте из очереди
+		while (queueTasks.First().cores <= free_cores && !queueTasks.IsEmpty())//РµСЃР»Рё РІРѕР·РјРѕР¶РЅРѕ С‚Рѕ Р·Р°РїРёСЃС‹РІР°РµРј РЅРѕРІСѓСЋ РїСЂРѕРіСЂР°РјРјСѓ РЅР° СЌС‚РѕРј С‚Р°РєС‚Рµ РёР· РѕС‡РµСЂРµРґРё
 		{
 			free_cores -= queueTasks.First().cores;
 			jobs.push_back(queueTasks.Get());

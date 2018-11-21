@@ -1,4 +1,4 @@
-#include "Queue.h"
+п»ї#include "Queue.h"
 #include "time.h"
 #include <cstdlib>
 #include <random>
@@ -14,21 +14,21 @@ struct Task
 class TProc
 {
 private:
-	unsigned int all_tacts;//кол-во тактов имитации
-	unsigned int squeue;//очередь процессора
-	double intens;//интенсивность потока задач
-	double rate;//мощность процессора
-	unsigned int all_cores;//всего кол-во ядер
-	unsigned int free_cores;//свободных ядер
+	unsigned int all_tacts;//РєРѕР»-РІРѕ С‚Р°РєС‚РѕРІ РёРјРёС‚Р°С†РёРё
+	unsigned int squeue;//РѕС‡РµСЂРµРґСЊ РїСЂРѕС†РµСЃСЃРѕСЂР°
+	double intens;//РёРЅС‚РµРЅСЃРёРІРЅРѕСЃС‚СЊ РїРѕС‚РѕРєР° Р·Р°РґР°С‡
+	double rate;//РјРѕС‰РЅРѕСЃС‚СЊ РїСЂРѕС†РµСЃСЃРѕСЂР°
+	unsigned int all_cores;//РІСЃРµРіРѕ РєРѕР»-РІРѕ СЏРґРµСЂ
+	unsigned int free_cores;//СЃРІРѕР±РѕРґРЅС‹С… СЏРґРµСЂ
 	int core_load;
-	int c_progs;// всего программ
-	int c_uncomplete;//число незавершенных задач
-	int c_complete;//завершенных програм
-	int c_ignore;//число откланенных задач
-	int c_downtime;//такты простоя 
-	int c_execution;//все время выполнения всех программ
+	int c_progs;// РІСЃРµРіРѕ РїСЂРѕРіСЂР°РјРј
+	int c_uncomplete;//С‡РёСЃР»Рѕ РЅРµР·Р°РІРµСЂС€РµРЅРЅС‹С… Р·Р°РґР°С‡
+	int c_complete;//Р·Р°РІРµСЂС€РµРЅРЅС‹С… РїСЂРѕРіСЂР°Рј
+	int c_ignore;//С‡РёСЃР»Рѕ РѕС‚РєР»Р°РЅРµРЅРЅС‹С… Р·Р°РґР°С‡
+	int c_downtime;//С‚Р°РєС‚С‹ РїСЂРѕСЃС‚РѕСЏ 
+	int c_execution;//РІСЃРµ РІСЂРµРјСЏ РІС‹РїРѕР»РЅРµРЅРёСЏ РІСЃРµС… РїСЂРѕРіСЂР°РјРј
 	vector<Task> jobs;
-	double Random(int min,int max);//рандом от 0 до 1 (неплохой рандом)
+	double Random(int min,int max);//СЂР°РЅРґРѕРј РѕС‚ 0 РґРѕ 1 (РЅРµРїР»РѕС…РѕР№ СЂР°РЅРґРѕРј)
 public:
 	TProc();
 	TProc(unsigned int _tacts, unsigned int _squeue, double _intens, double _rate,int _cores);
