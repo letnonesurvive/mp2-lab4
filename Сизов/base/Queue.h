@@ -102,11 +102,13 @@ public:
 		last=(++last)%size;
 		pMem[last] = elem;
 	}
-	type GetFirst()
+	type First()
 	{
-		return pMem[first];
+		int t_first=first;
+		t_first %= size;
+		return pMem[t_first];
 	}
-	type GetLast()
+	type Last()
 	{
 		return pMem[last];
 	}

@@ -1,29 +1,25 @@
 #include <cstdlib>
-#include <time.h>
 #include "Result.h"
 
-void main() //q1 -интенсивность задач q2- производительность процессора 
+void main()
 {
 	setlocale(LC_ALL, "Russian");
-	string id;
-	int tacts,sq;
+	int tacts,sq,cores;
 	double intens, rate;
-	//Task t1;
-	//cout << "—оздайте новое задание" << endl;
-	//cout << "¬ведите название задани€" << endl;
-	//cin >> id;
-	//cout << "¬ведите врем€ выполнени€ в тактах" << endl;
-	//cin >> tacts;
-	//cout << "¬ведите размер очереди" << endl;
-	//cin >> sq;
-	//cout << "¬ведите производительность процессора" << endl;
-	//cin >> rate;
-	////t1 = { id,tacts,cores };
-	//cout << "¬ведите интенсивоность потока задач" << endl;
-	//cin >> intens;
-	//CPU cpu(tacts,sq,intens,rate);
-	TProc cpu(10, 3, 0.5, 0.2,8);
-	cpu.RunJob();
-	Result r1(cpu);
+	cout << "«адайте параметры процессора" << endl;
+	cout << "¬ведите врем€ работы системы (в тактах)" << endl;
+	cin >> tacts;
+	cout << "¬ведите размер очереди" << endl;
+	cin >> sq;
+	cout << "¬ведите производительность процессора" << endl;
+	cin >> rate;
+	cout << "¬ведите интенсивоность потока задач" << endl;
+	cin >> intens;
+	cout << "¬ведите кол-во €дер процессора" << endl;
+	cin >> cores;
+	cout << endl;
+	TProc proc(tacts,sq,intens,rate,cores);
+	proc.RunJob();
+	Result r1(proc);
 	r1.AllStatus();
 }

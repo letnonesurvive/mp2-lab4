@@ -2,13 +2,16 @@
 
 class Result
 {
-	TProc c;
+	TProc proc;
 public:
-	Result(TProc c1) :c(c1) {}
+	Result(TProc c1) :proc(c1) {}
+	unsigned int GetAllTacts();
 	int GetPrograms();
 	int GetComplited();
 	int GetUnfinish();
-	double GetIgnored();
-	double GetDowntime();
+	int GetIgnored();
+	int GetDowntime();
+	int GetTimeExecution();
+	int GetCoreLoad();
 	void AllStatus();
 };

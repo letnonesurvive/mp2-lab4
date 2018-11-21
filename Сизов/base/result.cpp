@@ -1,63 +1,49 @@
 #include "Result.h"
-
+unsigned int Result :: GetAllTacts()
+{
+	return proc.all_tacts;
+}
 int Result::GetPrograms()
 {
-	return c.count_allprogram;
+	if (proc.c_progs == 0)//чтобы не было деления на ноль
+		return 1;
+	return proc.c_progs;
 }
 int Result::GetComplited()
 {
-	return c.count_completed;
+	if (proc.c_complete == 0)//аналогично
+		return 1;
+	return proc.c_complete;
 }
 int Result::GetUnfinish()
 {
-	return c.count_queue;
+	return proc.c_uncomplete;
 }
-double Result::GetIgnored()
+int Result::GetIgnored()
 {
-	return c.count_ignored;
+	return proc.c_ignore;
 }
-double Result::GetDowntime()
+int Result::GetDowntime()
 {
-	return c.count_downtime;
+	return proc.c_downtime;
+}
+int Result::GetTimeExecution()
+{
+	return proc.c_execution;
+}
+int Result::GetCoreLoad()
+{
+	return proc.core_load;
 }
 void Result::AllStatus()
 {
 	cout.precision(2);
-	//if (c.tacts > 10)
-	{
 		cout << "Всего было поданых задач " << GetPrograms() << endl;
-		cout << endl;
-		cout << "Незавершенных задач " << GetUnfinish() << endl;
 		cout << "Колличество завершенных задач " << GetComplited() << endl;
-		cout << "Колличество откланенных задач " << GetIgnored() << "%" << endl;
-		cout << "Тактов простоя " << GetDowntime() << "%" << endl;
+		cout << "Незавершенных задач " << GetUnfinish()<< endl;
+		cout << "Среднее время выполнения программы " << double(GetTimeExecution()) / GetComplited()<< endl;
+		cout << "Средняя загруженность ядер " << double(GetCoreLoad())*100/ (GetAllTacts()*proc.all_cores)<< "%" << endl;
+		cout << "Откланенных задач " << (double(GetIgnored()) / GetPrograms())*100<< "%" <<  endl;
+		cout << "Бездействие процессора " << (double(GetDowntime())/GetAllTacts())*100<< "%" << endl;
 		cout << endl;
-		for (int i = 0; i < c.stGet.size(); i++)
-			cout << c.stGet[i] << endl;
-		cout << endl;
-		for (int i = 0; i < c.stComplete.size(); i++)
-			cout << c.stComplete[i] << endl;
-	}
-	//else if (c.tacts <= 10)//потактовая развертка
-	//{
-	//	int i = 1, j = 0;
-	//	cout << "Интенсивность потока задач = " << c.intens<<endl;
-	//	cout << "Мощность процессора = " << c.rate << endl;
-	//	cout << "Такт: " << i << endl;
-	//	cout << "Новая задача успешно создана" << endl;
-	//	for (i,j;j<c.stComplete.size(), i < c.stGet.size(); i++,j++)
-	//	{
-	//		cout << "Такт: " << i + 1 << endl;
-	//		cout << c.stGet[i]<<" ";
-	//		if (c.stGet[i] < c.intens)
-	//			cout << "Новая задача успешно создана" << endl;
-	//		else if (c.stGet[i] >= c.intens)
-	//			cout << "Новой задачи создано не было" << endl;
-	//		cout << c.stComplete[j] << " ";
-	//		if (c.stComplete[j] < c.rate)
-	//			cout << "На данном такте программа была завершена" << endl;
-	//		else if (c.stComplete[j] >= c.rate)
-	//			cout << "Программа не была завершена" << endl;
-	//	}
-	//}
 }

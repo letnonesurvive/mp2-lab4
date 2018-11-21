@@ -14,26 +14,27 @@ struct Task
 class TProc
 {
 private:
-	int num_cores;
-	int free_cores;
-	unsigned int tacts;//кол-во тактов имитации
+	unsigned int all_tacts;//кол-во тактов имитации
 	unsigned int squeue;//очередь процессора
 	double intens;//интенсивность потока задач
 	double rate;//мощность процессора
-	int count_queue;
-	int count_allprogram;
-	int count_completed;
-	double count_ignored;
-	double count_downtime;
+	unsigned int all_cores;//всего кол-во ядер
+	unsigned int free_cores;//свободных ядер
+	int core_load;
+	int c_progs;// всего программ
+	int c_uncomplete;//число незавершенных задач
+	int c_complete;//завершенных програм
+	int c_ignore;//число откланенных задач
+	int c_downtime;//такты простоя 
+	int c_execution;//все время выполнения всех программ
 	vector<Task> jobs;
-	vector<double> stGet, stComplete;
 	double Random(int min,int max);//рандом от 0 до 1 (неплохой рандом)
 public:
 	TProc();
 	TProc(unsigned int _tacts, unsigned int _squeue, double _intens, double _rate,int _cores);
 	Task GetNewTask();
 	bool IsTask();
-	bool IsComplete(Task a);// чем больше производительность тем лучше 
-	void RunJob();//логика такова что процеесор всегда занят первым заданием в очереди, если такое есть
+	bool IsComplete();
+	void RunJob();
 	friend class Result;
 };

@@ -18,14 +18,14 @@ TEST(TQueue, can_return_first_elem_of_queue)
 	TQueue<int> q(5);
 	for (int i = 0; i < 5; i++)
 		q.Put(i);
-	EXPECT_EQ(0, q.GetFirst());
+	EXPECT_EQ(0, q.First());
 }
 TEST(TQueue, can_return_last_elem_of_queue)
 {
 	TQueue<int> q(5);
 	for (int i = 0; i < 5; i++)
 		q.Put(i);
-	EXPECT_EQ(4, q.GetLast());
+	EXPECT_EQ(4, q.Last());
 }
 TEST(TQueue, can_put_and_get_elem_in_queue)
 {
@@ -38,7 +38,7 @@ TEST(TQueue, method_get_delete_elem_of_queue)
 	TQueue<int> q(1);
 	q.Put(5);
 	q.Get();
-	EXPECT_NE(5, q.GetFirst());
+	EXPECT_NE(5, q.First());
 	//EXPECT_TRUE(q.IsEmpty());
 }
 TEST(TQueue, can_check_queue_for_empty)
@@ -100,7 +100,7 @@ TEST(TQueue, assign_operator_change_queue_first)
 		q2.Put(5);
 	}
 	q2 = q1;
-	EXPECT_NE(5, q2.GetFirst());
+	EXPECT_NE(5, q2.First());
 	//EXPECT_EQ(q2.GetFirst(), 1);
 }
 TEST(TQueue, assign_operator_change_queue_last)
@@ -112,7 +112,7 @@ TEST(TQueue, assign_operator_change_queue_last)
 		q2.Put(1);
 	}
 	q2 = q1;
-	EXPECT_NE(1, q2.GetLast());
+	EXPECT_NE(1, q2.Last());
 }
 TEST(TQueue, two_different_queues_have_different_memories)
 {
