@@ -28,13 +28,13 @@ private:
 	int c_downtime;//такты простоя 
 	int c_execution;//все время выполнения всех программ
 	vector<Task> jobs;
+	Task GetNewTask();
 	double Random(int min,int max);//рандом от 0 до 1 (неплохой рандом)
+	bool IsTask();
+	bool IsComplete();
 public:
 	TProc();
 	TProc(unsigned int _tacts, unsigned int _squeue, double _intens, double _rate,int _cores);
-	Task GetNewTask();
-	bool IsTask();
-	bool IsComplete();
 	void RunJob();
 	friend class Result;
 };
